@@ -46,6 +46,6 @@ echo "$foreignKeys"
 
 if [ $# -eq 2 ]
     then
-    filter (cat "$2")
+    filter "$(cat $2)"
 fi
 
