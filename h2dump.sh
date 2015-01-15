@@ -40,6 +40,8 @@ createTables=$(filter "$createTables")
 
 foreignKeys=$(echo "$createTables" | sed -r 's/CREATE TABLE IF NOT EXISTS ("[^"]*") \(/ALTER TABLE \1/g' | sed -n -e '/ALTER TABLE/,/);/ {/ALTER TABLE/ {x} ; /FOREIGN/ {x;p;x;p} }' | sed -r -e '/REFERENCES/ s/,//g' -e 's/(REFERENCES .*)/\1;/g')
 
+#delete create tables foreign key
+createTables=$(echo "$createTables" | sed '/ADD FOREIGN KEY/d' | sed -n '/CREATE TABLE/,/);/ {/);/ {x ; s/,$//g; p; x; p} ; /);/ !{x ; p}}' | sed '/CREATE TABLE/,/);/ !{d}')
 
 echo "$createTables"
 echo "$foreignKeys"
