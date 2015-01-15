@@ -33,6 +33,7 @@ function filter {
 	-e 's/^CREATE TABLE/CREATE TABLE IF NOT EXISTS/g' \
 	-e 's/ text / varchar(65535) /g' \
 	-e "s/\\\'/''/g" \
+	| sed -r 's/"(.*)"/"\U\1"/g' \
 	| sed -r '/UNIQUE/  s/([^,]*)\([0-9]*\)/\1/g'
 }
 
