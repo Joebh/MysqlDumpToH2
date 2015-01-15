@@ -1,6 +1,6 @@
 #!/bin/bash
 
-createTables="$1"
+createTables=$(cat $1)
 
 #remove all dash comments
 #remove all tick marks
@@ -46,6 +46,6 @@ echo "$foreignKeys"
 
 if [ $# -eq 2 ]
     then
-    filter "$2"
+    filter (cat "$2")
 fi
 
