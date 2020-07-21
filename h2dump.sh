@@ -25,6 +25,7 @@ function filter {
 	-e 's/ COLLATE utf8_unicode_cs//g' \
 	-e 's/ CHARACTER SET latin1//g' \
 	-e 's/ CHARACTER SET utf8//g' \
+	-e 's/ GENERATED ALWAYS .* VIRTUAL//g' \
 	-e 's/`//g' \
 	-e '/^DROP TABLE/d' \
 	-e 's/ COMMENT [^\n]*/,/g' \
