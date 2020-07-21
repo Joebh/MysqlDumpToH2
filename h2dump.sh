@@ -15,6 +15,10 @@ createTables=$(cat $1)
 #remove character sets
 function filter {
     echo "$1" | sed -e "/^--/d" \
+    -e 's/CHARACTER SET latin1 COLLATE latin1_general_cs //g' \
+    -e 's/CHARACTER SET latin1 COLLATE latin1_general_ci //g' \
+    -e 's/ COLLATE latin1_general_cs//g' \
+    -e 's/ COLLATE latin1_general_ci//g' \
 	-e 's/`//g' \
 	-e '/^DROP TABLE/d' \
 	-e 's/ COMMENT [^\n]*/,/g' \
